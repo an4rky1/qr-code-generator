@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-acid-lime: #ccff00;
+    --color-acid-pink: #ff00aa;
+    --color-acid-yellow: #ffe600;
+    --color-acid-cyan: #00ffcc;
+    --color-acid-orange: #ff6600;
+    --color-acid-purple: #aa00ff;
+    --color-memphis-bg: #f5f0e8;
+    --color-memphis-dark: #1a1a2e;
+    --color-memphis-card: #ffffff;
+    --color-memphis-surface: #faf8f4;
+
+    --animate-float: float 5s ease-in-out infinite;
+    --animate-float-slow: float 8s ease-in-out infinite;
+    --animate-float-fast: float 3s ease-in-out infinite;
+    --animate-wobble: wobble 3s ease-in-out infinite;
+    --animate-spin-slow: spin 12s linear infinite;
+    --animate-bounce-slow: bounce 3s ease-in-out infinite;
+
+    --keyframes-float: {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-25px) rotate(8deg); }
+    };
+    --keyframes-wobble: {
+        0%, 100% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+    };
+}
+
+@layer base {
+    body {
+        background-color: var(--color-memphis-bg);
+        overflow-x: hidden;
+    }
+}
+
+@layer components {
+    .memphis-card {
+        background: var(--color-memphis-card);
+        border: 4px solid #000;
+        border-radius: 24px;
+        box-shadow: 8px 8px 0px #000;
+        transition: all 0.2s ease;
+    }
+
+    .memphis-card:hover {
+        box-shadow: 12px 12px 0px #000;
+        transform: translate(-2px, -2px);
+    }
+
+    .memphis-btn {
+        background: linear-gradient(135deg, var(--color-acid-lime), var(--color-acid-pink));
+        border: 4px solid #000;
+        border-radius: 16px;
+        box-shadow: 6px 6px 0px #000;
+        color: #000;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.15s ease;
+    }
+
+    .memphis-btn:hover {
+        box-shadow: 8px 8px 0px #000;
+        transform: translate(-2px, -2px);
+    }
+
+    .memphis-btn:active {
+        box-shadow: 2px 2px 0px #000;
+        transform: translate(4px, 4px);
+    }
+
+    .memphis-btn-secondary {
+        background: var(--color-acid-yellow);
+        border: 4px solid #000;
+        border-radius: 16px;
+        box-shadow: 6px 6px 0px #000;
+        color: #000;
+        font-weight: 900;
+        transition: all 0.15s ease;
+    }
+
+    .memphis-btn-secondary:hover {
+        box-shadow: 8px 8px 0px #000;
+        transform: translate(-2px, -2px);
+    }
+
+    .memphis-input {
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+    }
+
+    .memphis-input:focus {
+        border-color: var(--color-acid-pink);
+        box-shadow: 4px 4px 0px var(--color-acid-pink);
+        outline: none;
+    }
+
+    .memphis-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border: 3px solid #000;
+        border-radius: 9999px;
+        font-weight: 800;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .social-btn {
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 14px;
+        box-shadow: 4px 4px 0px #000;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.15s ease;
+    }
+
+    .social-btn:hover {
+        box-shadow: 6px 6px 0px #000;
+        transform: translate(-2px, -2px);
+    }
+
+    .social-btn:active {
+        box-shadow: 1px 1px 0px #000;
+        transform: translate(3px, 3px);
+    }
+
+    .text-gradient-acid {
+        background: linear-gradient(135deg, var(--color-acid-lime), var(--color-acid-pink), var(--color-acid-yellow));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-acid {
+        background: linear-gradient(135deg, var(--color-acid-lime), var(--color-acid-pink), var(--color-acid-yellow));
+    }
+}
+
+@layer utilities {
+    .text-outline {
+        -webkit-text-stroke: 2px #000;
+        -webkit-text-fill-color: transparent;
+    }
+}
