@@ -15,7 +15,7 @@ FROM base AS assets
 COPY package.json package-lock.json vite.config.js ./
 RUN npm ci && npm run build
 
-FROM base
+FROM base AS render
 
 COPY --from=vendor /var/www/html/vendor /var/www/html/vendor
 COPY --from=assets /var/www/html/public/build /var/www/html/public/build
@@ -26,3 +26,12 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache \
     && touch /var/www/html/database/database.sqlite \
     && chown www-data:www-data /var/www/html/database/database.sqlite
+
+COPY docker/nginx-render.conf /etc/nginx/sites-enabled/default
+COPY docker/render-start.sh /usr/local/bin/render-start.sh
+
+RUN chmod +x /usr/local/bin/render-start.sh
+
+EXPOSE 8080
+
+CMD ["/usr/local/bin/render-start.sh"]
