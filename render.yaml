@@ -1,7 +1,7 @@
 services:
   - type: web
     name: smart-vcard
-    runtime: docker
+    env: docker
     dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
@@ -30,5 +30,4 @@ services:
       name: sqlite-data
       mountPath: /var/www/html/database
       sizeGB: 1
-    healthCheck:
-      httpPath: /up
+    healthCheckPath: /up
