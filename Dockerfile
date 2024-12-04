@@ -3,6 +3,7 @@ FROM serversideup/php:8.3-fpm-nginx AS base
 ENV AUTORUN_ENABLED=false
 ENV SSL_MODE=off
 
+USER root
 RUN install-php-extensions gd exif
 
 FROM base AS vendor
