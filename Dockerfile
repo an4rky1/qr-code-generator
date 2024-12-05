@@ -1,4 +1,4 @@
-FROM serversideup/php:8.3-fpm-nginx AS base
+FROM serversideup/php:8.4-fpm-nginx AS base
 
 ENV AUTORUN_ENABLED=false
 ENV SSL_MODE=off
@@ -11,8 +11,9 @@ FROM base AS vendor
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-FROM base AS assets
+FROM node:22-alpine AS assets
 
+WORKDIR /var/www/html
 COPY package.json package-lock.json vite.config.js ./
 RUN npm ci && npm run build
 
