@@ -15,6 +15,7 @@ FROM node:22-alpine AS assets
 
 WORKDIR /var/www/html
 COPY package.json package-lock.json vite.config.js ./
+COPY resources/ resources/
 RUN npm ci && npm run build
 
 FROM base AS render
