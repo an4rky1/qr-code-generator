@@ -2,8 +2,13 @@
 
 set -e
 
-sed -i "s/\${PORT}/${PORT:-8080}/g" /etc/nginx/sites-enabled/default
+mkdir -p /var/www/html/storage/framework/{cache,sessions,views,testing}
+mkdir -p /var/www/html/storage/logs
 
 php artisan storage:link --force 2>/dev/null || true
 
-exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+sed -i "s/\${PORT}/${PORT:-8080}/g" /etc/nginx/sites-enabled/default
+
+php-fpm -D
+
+nginx -g "daemon off;"

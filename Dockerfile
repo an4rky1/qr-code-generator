@@ -37,4 +37,4 @@ RUN chmod +x /usr/local/bin/render-start.sh
 
 EXPOSE 8080
 
-CMD ["/usr/local/bin/render-start.sh"]
+ENTRYPOINT ["/usr/local/bin/render-start.sh"]

@@ -26,6 +26,8 @@ services:
         value: sqlite
       - key: AUTORUN_ENABLED
         value: "false"
+      - key: PHP_OPCACHE_ENABLE
+        value: "1"
     disk:
       name: sqlite-data
       mountPath: /var/www/html/database
