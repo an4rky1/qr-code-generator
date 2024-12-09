@@ -31,7 +31,6 @@ RUN chown -R www-data:www-data /var/www/html \
     && chown www-data:www-data /var/www/html/database/database.sqlite
 
 COPY docker/nginx-render.conf /etc/nginx/sites-enabled/default
-COPY docker/php-fpm-render.conf /etc/php/8.4/fpm/pool.d/www.conf
 COPY docker/render-start.sh /usr/local/bin/render-start.sh
 RUN chmod +x /usr/local/bin/render-start.sh
 
