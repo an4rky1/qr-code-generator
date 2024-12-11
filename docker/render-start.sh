@@ -9,6 +9,9 @@ php artisan storage:link --force 2>/dev/null || true
 
 sed -i "s/\${PORT}/${PORT:-8080}/g" /etc/nginx/sites-enabled/default
 
+mkdir -p /var/run/php
+chown www-data:www-data /var/run/php
+
 POOL_CONF='[www]
 user = www-data
 group = www-data
