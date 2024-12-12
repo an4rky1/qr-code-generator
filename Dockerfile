@@ -30,6 +30,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && touch /var/www/html/database/database.sqlite \
     && chown www-data:www-data /var/www/html/database/database.sqlite
 
+COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/nginx-render.conf /etc/nginx/sites-enabled/default
 COPY docker/render-start.sh /usr/local/bin/render-start.sh
 RUN chmod +x /usr/local/bin/render-start.sh
