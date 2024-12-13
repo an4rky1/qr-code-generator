@@ -5,6 +5,14 @@ set -e
 mkdir -p /var/www/html/storage/framework/{cache,sessions,views,testing}
 mkdir -p /var/www/html/storage/logs
 
+if [ ! -f /var/www/html/.env ]; then
+    cp /var/www/html/.env.example /var/www/html/.env
+fi
+
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = " " ]; then
+    php artisan key:generate --force 2>/dev/null || true
+fi
+
 php artisan storage:link --force 2>/dev/null || true
 
 sed -i "s/\${PORT}/${PORT:-8080}/g" /etc/nginx/sites-enabled/default
@@ -34,5 +42,12 @@ for dir in /etc/php/*/fpm/pool.d /etc/php/*/pool.d /usr/local/etc/php-fpm.d; do
 done
 
 php-fpm -D
+
+for i in $(seq 1 10); do
+    if [ -S /var/run/php/php-fpm.sock ]; then
+        break
+    fi
+    sleep 0.5
+done
 
 nginx -g "daemon off;"
