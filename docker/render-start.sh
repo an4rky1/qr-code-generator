@@ -13,6 +13,7 @@ if [ -z "$APP_KEY" ] || [ "$APP_KEY" = " " ]; then
     php artisan key:generate --force 2>/dev/null || true
 fi
 
+php artisan migrate --force 2>/dev/null || true
 php artisan storage:link --force 2>/dev/null || true
 
 sed -i "s/\${PORT}/${PORT:-8080}/g" /etc/nginx/sites-enabled/default
