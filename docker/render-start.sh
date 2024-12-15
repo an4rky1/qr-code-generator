@@ -1,15 +1,16 @@
 #!/bin/bash
-
 set -e
 
-mkdir -p /var/www/html/storage/framework/{cache,sessions,views,testing}
+mkdir -p /var/www/html/storage/framework/{cache,cache/data,sessions,views,testing}
 mkdir -p /var/www/html/storage/logs
+
+chown -R www-data:www-data /var/www/html/storage/framework /var/www/html/storage/logs
 
 if [ ! -f /var/www/html/.env ]; then
     cp /var/www/html/.env.example /var/www/html/.env
 fi
 
-if [ -z "$APP_KEY" ] || [ "$APP_KEY" = " " ]; then
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "" ] || [ "$APP_KEY" = " " ]; then
     php artisan key:generate --force 2>/dev/null || true
 fi
 
