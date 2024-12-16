@@ -12,6 +12,8 @@ services:
         generateValue: true
       - key: APP_URL
         value: https://smart-vcard.onrender.com
+      - key: TRUSTED_PROXIES
+        value: "*"
       - key: LOG_CHANNEL
         value: stderr
       - key: LOG_LEVEL
